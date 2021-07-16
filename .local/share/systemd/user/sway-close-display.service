@@ -1,0 +1,11 @@
+[Unit]
+Description=Swayidle close display
+BindsTo=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swayidle -w timeout 0 'close-display' resume 'swaymsg "output * dpms on"'
+
+[Install]
+WantedBy=xdg-desktop-autostart.target
+

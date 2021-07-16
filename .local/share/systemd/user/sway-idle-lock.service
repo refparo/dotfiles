@@ -1,0 +1,10 @@
+[Unit]
+Description=Swayidle idle lock
+BindsTo=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swayidle -w timeout 300 'close-display' timeout 301 'swaylock' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock' lock 'swaylock'
+
+[Install]
+WantedBy=xdg-desktop-autostart.target

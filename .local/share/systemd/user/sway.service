@@ -1,0 +1,13 @@
+[Unit]
+Description=Sway
+Documentation=man:sway(5)
+
+[Service]
+Type=simple
+ExecStart=sway
+ExecStopPost=systemctl --user stop sway-session.target
+ExecStopPost=systemctl --user unset-environment DBUS_SESSION_BUS_ADDRESS DISPLAY SWAYSOCK WAYLAND_DISPLAY
+
+[Install]
+WantedBy=graphical-session.target
+

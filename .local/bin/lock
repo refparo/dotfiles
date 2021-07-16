@@ -1,0 +1,3 @@
+#!/bin/bash
+kill -s SIGUSR1 \
+  $(systemctl --user show $1 --property=MainPID | cut -d'=' -f2)

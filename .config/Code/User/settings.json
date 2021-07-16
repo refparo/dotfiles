@@ -1,0 +1,75 @@
+{
+  // diff editor
+  "diffEditor.ignoreTrimWhitespace": true,
+  // editor
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.cursorBlinking": "smooth",
+  "editor.detectIndentation": false,
+  "editor.fontFamily": "'Fira Code', 'Noto Sans', 'Noto Sans CJK', monosapce",
+  "editor.fontLigatures": true,
+  "editor.highlightActiveIndentGuide": true,
+  "editor.minimap.enabled": false,
+  "editor.renderIndentGuides": true,
+  //"editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
+  "editor.rulers": [80],
+  // explorer
+  "explorer.confirmDelete": false,
+  // files
+  "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": false,
+  // folding
+  "folding": {
+    "*": {
+      "begin": "{{{",
+      "middle": "|||",
+      "end": "}}}"
+    },
+  },
+  // git
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  // haskell
+  "haskell.indentationRules.enabled": false,
+  // html
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+  // markdown
+  "markdown-preview-enhanced.breakOnSingleNewLine": false,
+  "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+  "markdown-preview-enhanced.enableScriptExecution": true,
+  // terminal
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.rendererType": "experimentalWebgl",
+  // typescript
+  "typescript.format.semicolons": "remove",
+  // window
+  "window.titleBarStyle": "custom",
+  // workbench
+  "workbench.colorTheme": "Solarized Dark",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.settings.editor": "json",
+  // language-specific
+  "[markdown]": {
+    "editor.occurrencesHighlight": false,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    },
+    "editor.rulers": [],
+    "editor.wordBasedSuggestions": false,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  },
+  "[plaintext]": {
+    "editor.rulers": [],
+    "editor.wordBasedSuggestions": false,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  }
+}

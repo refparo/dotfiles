@@ -1,0 +1,5 @@
+#!/bin/bash
+orig_value=$(xbacklight -get)
+xbacklight -set 0 -fps 60
+swaymsg 'output * dpms off'
+xbacklight -set $orig_value

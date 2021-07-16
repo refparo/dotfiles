@@ -1,0 +1,11 @@
+[Unit]
+Description=CopyQ
+BindsTo=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=copyq
+
+[Install]
+WantedBy=xdg-desktop-autostart.target
+

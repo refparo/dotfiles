@@ -1,0 +1,5 @@
+[Unit]
+Description=Sway session autostart
+Documentation=man:systemd.special(7)
+BindsTo=xdg-desktop-autostart.target
+Requisite=graphical-session.target
