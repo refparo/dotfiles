@@ -6,7 +6,3 @@ BindsTo=graphical-session.target
 Type=simple
 StandardInput=socket
 ExecStart=wob --anchor top --border-color "#A0000000" --background-color "#A0000000" --bar-color "#A0FFFFFF"
-
-[Install]
-WantedBy=xdg-desktop-autostart.target
-
