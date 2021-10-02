@@ -9,9 +9,10 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
   export EDITOR=vim
   export PATH=$HOME/.local/bin:$PATH
   export GHCUP_USE_XDG_DIRS=true
+  export CABAL_CONFIG=$HOME/.config/cabal/config
   systemctl --user import-environment \
     XDG_SESSION_ID XDG_RUNTIME_DIR XDG_SESSION_TYPE XDG_SEAT \
-    PATH EDITOR GHCUP_USE_XDG_DIRS
+    PATH EDITOR GHCUP_USE_XDG_DIRS CABAL_CONFIG
   systemctl --user start sway-session.target
 fi
 
@@ -29,7 +30,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 alias ls='ls --color=auto'
 alias la='ls -A --color=auto'
-alias ll='ls --color=auto -Al'
+alias ll='ls --color=auto -Alh'
 alias userctl='systemctl --user'
 alias :q=exit
 
