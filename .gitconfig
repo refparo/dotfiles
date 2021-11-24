@@ -1,0 +1,13 @@
+[user]
+  name = refparo
+  email = ref.paro@outlook.com
+[color]
+  ui = true
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+  compression = 9
+[http]
+  postBuffer = 52428800
+[pull]
+	rebase = false
