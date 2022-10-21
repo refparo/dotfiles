@@ -1,8 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export LANG=zh_CN.UTF-8
 export EDITOR=vim
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
 export GHCUP_USE_XDG_DIRS=true
 export CABAL_CONFIG=$HOME/.config/cabal/config
 
