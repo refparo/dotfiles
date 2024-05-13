@@ -7,9 +7,10 @@
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
   compression = 9
+  autocrlf = input
 [http]
   postBuffer = 52428800
 [pull]
   rebase = false
 [credential]
-	helper = cache
+  helper = cache

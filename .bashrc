@@ -23,9 +23,11 @@ HISTSIZE=
 HISTTIMEFORMAT="[%F %T] "
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-alias ls='ls --color=auto'
-alias la='ls -A --color=auto'
-alias ll='ls --color=auto -Alh'
+eval $(dircolors)
+
+alias ls='ls -p --color=auto --group-directories-first'
+alias la='ls -Ap --color=auto --group-directories-first'
+alias ll='ls -Ahlp --color=auto --group-directories-first --time-style=long-iso'
 alias :q=exit
 
 . /usr/share/bash-complete-alias/complete_alias
