@@ -10,7 +10,9 @@ set autoindent
 set hidden
 set cursorline
 set number
-set termguicolors
+if exists('+termguicolors')
+  set termguicolors
+endif
 set background=dark
 
 set backup
