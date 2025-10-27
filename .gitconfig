@@ -1,16 +1,16 @@
-[user]
-  name = refparo
-  email = ref.paro@outlook.com
-[color]
-  ui = true
 [alias]
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+  ui = true
 [core]
   compression = 9
   autocrlf = input
-[http]
-  postBuffer = 52428800
-[pull]
-  rebase = false
 [credential]
   helper = cache
+[pull]
+  rebase = true
+[rebase]
+  autoStash = true
+[user]
+  name = refparo
+  email = ref.paro@outlook.com
