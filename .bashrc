@@ -3,7 +3,11 @@
 
 source /usr/share/blesh/ble.sh --noattach
 
-export EDITOR=vim
+if [[ -v DISPLAY ]]; then
+  export EDITOR="zeditor --wait"
+else
+  export EDITOR=vim
+fi
 
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
 
@@ -24,6 +28,6 @@ alias ls='ls -pv --color=auto --group-directories-first'
 alias la='ls -Apv --color=auto --group-directories-first'
 alias ll='ls -Ahlpv --color=auto --group-directories-first --time-style=long-iso'
 alias grep='grep --color=auto'
-alias :q=exit
+alias zed=zeditor
 
 [[ ! ${BLE_VERSION-} ]] || ble-attach

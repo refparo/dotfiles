@@ -1,0 +1,84 @@
+@define-color accent #7fc8ff; 
+@define-color bg-color @theme_bg_color;
+@define-color fg-color @theme_fg_color;
+@define-color desc-color shade(@theme_fg_color, 0.8);
+
+window {
+  background: transparent;
+}
+
+.main {
+  margin: 20px;
+  border-radius: 12px;
+  border: 2px solid @accent;
+  padding: 8px;
+  background-color: @bg-color;
+  box-shadow: 0 5px 10px 5px #0001;
+}
+
+
+.main > text {
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: @fg-color;
+  background: shade(@bg-color, 0.8);
+}
+
+.matches {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+.matches > .plugin:first-child {
+  margin-top: 8px;
+}
+
+box.plugin.info {
+  min-width: 150px;
+}
+
+box.plugin.info > box {
+  padding: 4px;
+}
+
+box.plugin.info image {
+  -gtk-icon-size: 32px;  
+}
+
+box.plugin.info label {
+  margin-left: 8px;
+  font-size: 14px;
+  color: @fg-color;
+}
+
+list.plugin {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+row.match {
+  border-radius: 8px;
+  padding: 4px;
+}
+
+row.match > box {
+}
+
+row.match > box:selected {
+}
+
+row.match > box > image {
+}
+
+.text-fields {
+}
+
+.title {
+  line-height: 18px;
+}
+
+.description {
+  font-size: 10px;
+  line-height: 14px;
+  color: @desc-color;
+}
