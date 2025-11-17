@@ -1,0 +1,34 @@
+{
+  "auto_update": false,
+  "buffer_font_fallbacks": ["Source Han Sans SC", ".SystemUIFont"],
+  "buffer_font_family": "Fira Code",
+  "buffer_font_size": 14.0,
+  "gutter": {
+    "min_line_number_digits": 3
+  },
+  "minimum_contrast_for_highlights": 0,
+  "outline_panel": {
+    "indent_size": 18.0
+  },
+  "tab_size": 2,
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false
+  },
+  "terminal": {
+    "blinking": "on",
+    "cursor_shape": "bar",
+    "env": {
+      "EDITOR": "zeditor --wait"
+    },
+    "minimum_contrast": 0
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Solarized Light",
+    "dark": "Solarized Dark"
+  },
+  "ui_font_fallbacks": ["Source Han Sans SC", ".SystemUIFont"],
+  "ui_font_family": "Noto Sans",
+  "wrap_guides": [80]
+}

@@ -3,13 +3,10 @@
 
 source /usr/share/blesh/ble.sh --noattach
 
-if [[ -v DISPLAY ]]; then
-  export EDITOR="zeditor --wait"
-else
-  export EDITOR=vim
-fi
-
+[[ -v EDITOR ]] || export EDITOR=vim
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$PATH
+
+export RUSTUP_DIST_SERVER=https://mirrors.cernet.edu.cn/rustup
 
 set -o noclobber
 shopt -s checkwinsize
