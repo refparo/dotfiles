@@ -1,27 +1,152 @@
 {
+  "agent": {
+    "sidebar_side": "right",
+    "button": false,
+    "dock": "right",
+    "enabled": false
+  },
   "auto_update": false,
-  "buffer_font_fallbacks": ["Source Han Sans SC", ".SystemUIFont"],
+  "buffer_font_fallbacks": ["Source Han Sans SC", "Twemoji", ".SystemUIFont"],
   "buffer_font_family": "Fira Code",
   "buffer_font_size": 14.0,
+  "centered_layout": {
+    "left_padding": 0.3,
+    "right_padding": 0.3
+  },
+  "cli_default_open_behavior": "existing_window",
+  "code_lens": "menu",
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left"
+  },
+  "debugger": {
+    "dock": "right"
+  },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "formatter": {
+    "language_server": {
+      "name": "oxfmt"
+    }
+  },
+  "format_on_save": "on",
+  "git_panel": {
+    "tree_view": true,
+    "dock": "left"
+  },
   "gutter": {
     "min_line_number_digits": 3
   },
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "languages": {
+    "CSS": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "HTML": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "JavaScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!eslint",
+        "!tailwindcss-language-server",
+        "!typescript-language-server",
+        "!vtsls",
+        "..."
+      ]
+    },
+    "JSON": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "JSONC": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "Markdown": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "Markdown-Inline": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "Python": {
+      "language_servers": ["!basedpyright", "!pylsp", "!pyright", "..."]
+    },
+    "TOML": {
+      "language_servers": ["oxfmt", "..."]
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!eslint",
+        "!tailwindcss-language-server",
+        "!typescript-language-server",
+        "!vtsls",
+        "..."
+      ]
+    },
+    "TypeScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!eslint",
+        "!tailwindcss-language-server",
+        "!typescript-language-server",
+        "!vtsls",
+        "..."
+      ]
+    },
+    "Typst": {
+      "soft_wrap": "bounded"
+    },
+    "YAML": {
+      "language_servers": ["oxfmt", "..."]
+    }
+  },
+  "lsp": {
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "format": {
+            "newlineBetweenSelectors": false,
+            "wrapLineLength": 80
+          }
+        }
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "rustfmt": {
+          "extraArgs": ["+nightly"]
+        }
+      }
+    },
+    "tinymist": {
+      "settings": {
+        "formatterPrintWidth": 80
+      }
+    }
+  },
   "minimum_contrast_for_highlights": 0,
   "outline_panel": {
+    "dock": "left",
     "indent_size": 18.0
   },
+  "project_panel": {
+    "auto_reveal_entries": false,
+    "dock": "left"
+  },
+  "proxy": "http://localhost:1080",
   "tab_size": 2,
   "telemetry": {
     "diagnostics": true,
     "metrics": false
   },
   "terminal": {
+    "bell": "system",
     "blinking": "on",
     "cursor_shape": "bar",
-    "env": {
-      "EDITOR": "zeditor --wait"
-    },
-    "minimum_contrast": 0
+    "dock": "right",
+    "minimum_contrast": 0,
+    "show_count_badge": false
   },
   "theme": {
     "mode": "system",

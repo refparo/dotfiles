@@ -10,10 +10,9 @@ set autoindent
 set hidden
 set cursorline
 set number
-if exists('+termguicolors')
-  set termguicolors
-endif
 set background=dark
+colorscheme catppuccin
+hi Normal guibg=NONE ctermbg=NONE
 
 set backup
 set updatecount=100
