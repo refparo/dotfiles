@@ -1,0 +1,9 @@
+greetd-dms-greeter-bin
+jdk25-graalvm-bin
+linuxqq
+osu-lazer-tachyon-bin
+otf-baskervillef
+passkeyd
+quickshell-git
+ttf-zhuque-fangsong-bin
+uudeck
