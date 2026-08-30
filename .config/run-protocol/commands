@@ -1,0 +1,15 @@
+# run:// 协议白名单，每行一条命令（可按空白带参数）。
+# 验证规则：URL 命令的 token 序列以配置中某一行的 token 序列为前缀即可执行。
+#
+# 示例:
+#   code
+#   firefox
+#   alacritty --working-directory
+#
+# 对应链接（URL 里空格请写 + 或 %20）:
+#   run://code
+#   run://code+~/proj
+#   run://alacritty+--working-directory+~/proj
+notify-send
+zed
+zeditor

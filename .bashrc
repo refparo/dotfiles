@@ -8,7 +8,7 @@ export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$PATH
 
 source /usr/share/blesh/ble.sh --noattach
 
-set -o noclobber
+set -uCo pipefail
 shopt -s checkwinsize
 shopt -s expand_aliases
 
