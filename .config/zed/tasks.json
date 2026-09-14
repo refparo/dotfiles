@@ -1,0 +1,8 @@
+// See https://zed.dev/docs/tasks for documentation.
+[
+  {
+    "label": "Run Kitty",
+    "command": "kitty --detach",
+    "reveal": "never"
+  },
+]
