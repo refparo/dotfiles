@@ -15,5 +15,6 @@ qt5-wayland
 rocm-smi-lib
 rtkit
 webkit2gtk-4.1
+xorg-fonts-misc
 xorg-xset
 xwayland-satellite

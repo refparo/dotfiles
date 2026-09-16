@@ -12,4 +12,13 @@
       "ctrl-`": ["task::Spawn", { "task_name": "Run Kitty" }]
     }
   },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-j": null,
+      "ctrl-p": null,
+      "ctrl-q": null,
+      "ctrl-`": "terminal_panel::Toggle"
+    }
+  }
 ]

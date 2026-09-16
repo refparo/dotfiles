@@ -4,6 +4,5 @@ linuxqq
 osu-lazer-tachyon-bin
 otf-baskervillef
 passkeyd
-quickshell-git
 ttf-zhuque-fangsong-bin
 uudeck

@@ -101,10 +101,12 @@ ttc-iosevka
 ttf-caladea
 ttf-carlito
 ttf-charis
+ttf-fira-code
 ttf-liberation
 ttf-libertinus
 ttf-lxgw-wenkai
 typst
+ufw
 unzip
 uv
 vim
