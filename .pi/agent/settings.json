@@ -1,0 +1,17 @@
+{
+  "lastChangelogVersion": "0.87.1",
+  "theme": "dark",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "deepseek/deepseek-flash",
+    "moonshotai-cn/kimi-k3",
+    "zai-coding-cn/glm-5.3",
+    "zai-coding-cn/glm-5.3-flash",
+    "zai-coding-cn/glm-5.3-highspeed"
+  ],
+  "steeringMode": "all",
+  "transport": "auto",
+  "enableInstallTelemetry": false
+}
