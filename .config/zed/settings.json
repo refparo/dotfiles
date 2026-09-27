@@ -6,8 +6,11 @@
     "enabled": false
   },
   "auto_update": false,
-  "buffer_font_fallbacks": ["Source Han Sans SC", "Twemoji", ".SystemUIFont"],
+  "buffer_font_fallbacks": ["Source Han Sans SC", "Twemoji"],
   "buffer_font_family": "Fira Code",
+  "buffer_font_features": {
+    "ss08": true
+  },
   "buffer_font_size": 14.0,
   "centered_layout": {
     "left_padding": 0.3,

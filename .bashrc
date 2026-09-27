@@ -30,15 +30,16 @@ alias grep='grep --color=auto'
 
 function paru {
   local PROXY_URL=http://localhost:1080
+  local -x https_proxy
   if [ $# -eq 0 ]; then
     command paru -Syu
     https_proxy=$PROXY_URL command paru --aur -Syu
   else
+    local param
     for param in "$@"; do
-      if [[ "$param" == "--aur" ]]; then
-        https_proxy=$PROXY_URL command paru "$@"
-        return
-      fi
+      case $param in
+        --aur | -a* | -[!-]*a*) https_proxy=$PROXY_URL; break ;;
+      esac
     done
     command paru "$@"
   fi

@@ -11,5 +11,4 @@
 #   run://code+~/proj
 #   run://alacritty+--working-directory+~/proj
 notify-send
-zed
 zeditor
