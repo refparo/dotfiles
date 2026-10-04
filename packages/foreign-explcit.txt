@@ -1,3 +1,5 @@
+adwaita-qt5
+adwaita-qt6
 greetd-dms-greeter-bin
 jdk25-graalvm-bin
 linuxqq

@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.0.2",
   "theme": "dark",
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-v4-flash",
@@ -13,5 +13,12 @@
   ],
   "steeringMode": "all",
   "transport": "auto",
-  "enableInstallTelemetry": false
+  "enableInstallTelemetry": false,
+  "extensions": [
+    "-builtin:codemode",
+    "-builtin:llama.cpp",
+    "-builtin:mcp",
+    "-builtin:tool-search"
+  ],
+  "tuiMode": "regular"
 }

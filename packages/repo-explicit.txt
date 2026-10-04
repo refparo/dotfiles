@@ -3,8 +3,6 @@ adobe-source-han-sans-otc-fonts
 adobe-source-han-serif-otc-fonts
 adobe-source-sans-fonts
 adobe-source-serif-fonts
-adwaita-qt5
-adwaita-qt6
 adw-gtk-theme
 alsa-utils
 amd-ucode
@@ -24,7 +22,6 @@ cachyos-keyring
 cachyos-mirrorlist
 cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
-calf
 compsize
 corepack
 darkhttpd
@@ -79,6 +76,7 @@ paru
 pavucontrol
 plymouth
 polkit-gnome
+power-profiles-daemon
 protontricks
 protonup-qt
 python-matplotlib
