@@ -1,60 +1,7 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-config-notification {
-    disable-failed
-}
-
-gestures {
-    hot-corners {
-        off
-    }
-}
-
-input {
-    keyboard {
-        xkb { }
-        numlock
-    }
-
-    touchpad {
-        tap
-        natural-scroll
-    }
-
-    mouse { }
-
-    trackpoint { }
-}
-
-layout {
-    background-color "transparent"
-
-    center-focused-column "never"
-
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-    }
-
-    // preset-window-heights { }
-
-    default-column-width { proportion 0.5; }
-
-    // default-column-width {}
-
-    border {
-        off
-    }
-    shadow {
-        on
-        softness 30
-        spread 5
-        offset x=0 y=5
-    }
-    struts { }
-}
+// === Aesthetic config ===
 
 prefer-no-csd
 
@@ -65,25 +12,40 @@ blur {
     saturation 1.1
 }
 
-animations { }
+layout {
+    background-color "transparent"
 
-debug {
-    honor-xdg-activation-with-invalid-serial
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+    }
+
+    // These are functional settings but we aren't allowed to repeat sections
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width { proportion 0.5; }
 }
 
-screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
+// === Functional config ===
 
-overview {
-    workspace-shadow {
-        off
+input {
+    keyboard { numlock; }
+
+    touchpad {
+        tap
+        natural-scroll
     }
 }
 
-hotkey-overlay {
-    skip-at-startup
+overview {
+    workspace-shadow { off; }
 }
 
-// Override to disable super+tab
 recent-windows {
     binds {
         Alt+Tab         { next-window scope="output"; }
@@ -93,74 +55,281 @@ recent-windows {
     }
 }
 
+hotkey-overlay {
+    skip-at-startup
+}
+
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
+
 environment {
   XDG_CURRENT_DESKTOP "niri"
 }
+
+config-notification {
+    disable-failed
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// === Layer rules ===
 
 layer-rule {
     match namespace="^quickshell$"
     place-within-backdrop true
 }
 
-layer-rule {
-    match namespace="^dms:"
-    background-effect {
-        xray false
-    }
+// === Window rules, sorted by app-id in alphabetical order ===
+
+window-rule {
+    match app-id=r#"com\.danklinux\.dms$"#
+    open-floating true
 }
 
 window-rule {
-    match app-id=r#"com.danklinux.dms$"#
+    match app-id=r#"^dev\.zed\.Zed$"#
+    default-column-width { proportion 0.33333; }
+}
+
+window-rule {
+    match app-id="^firefox$"
+    default-column-width { proportion 0.66666; }
+}
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
     open-floating true
-    background-effect {
-        xray false
-    }
 }
+
 window-rule {
-    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=16 y=16 relative-to="bottom-right"
-    open-focused false
+    match app-id="^kitty$"
+    default-column-width { proportion 0.33333; }
 }
+
 window-rule {
-    match app-id="kitty"
-    draw-border-with-background false
-}
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id="^steam$" title="^Friends List$"
-    match app-id="^QQ$"
-    match app-id=r#"^org\.telegram\.desktop$"#
-    match app-id="^v2rayN$"
     match app-id=r#"^org\.fcitx\.fcitx5-config-qt$"#
     open-floating true
 }
+
+window-rule {
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    default-column-width { proportion 0.33333; }
+}
+
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"#
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"# title="^(Media viewer|媒体查看器)$"
+    open-fullscreen false
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.66666; }
+}
+
+window-rule {
+    match app-id="^QQ$"
+    open-floating true
+}
+
 window-rule {
     match app-id="^scrcpy$" title="^PLC110$"
     default-column-width { fixed 2100; }
     default-window-height { fixed 954; }
 }
+
 window-rule {
-    match app-id=r#"^org\.telegram\.desktop$"# title="^Media viewer$"
-    open-fullscreen false
-    default-column-width { proportion 0.5; }
-    default-window-height { proportion 0.66666; }
-}
-// Workaround the Firefox bug of not aligning to the physical pixel correctly
-// when the output has a fractional scale.
-window-rule {
-    match app-id="^firefox$"
-    default-column-width { proportion 0.66666; }
-    default-window-height { fixed 1048; }
+    match app-id="^steam$" title="^(Friends List|好友列表)$"
+    open-floating true
 }
 window-rule {
-    match app-id="^kitty$"
-    match app-id="^org.gnome.Nautilus$"
-    match app-id="^dev.zed.Zed$"
-    default-column-width { proportion 0.33333; }
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=16 y=16 relative-to="bottom-right"
+    open-focused false
 }
 window-rule {
-    match app-id="^steam_app_1510030$"
+    match app-id=r#"^steam_app_\d+$"#
     open-fullscreen true
+}
+
+// === Key Bindings ===
+
+binds {
+    // === System / Overview ===
+    Mod+Shift+E { quit; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+D repeat=false { toggle-overview; }
+
+    // === Application Launchers ===
+    Mod+T hotkey-overlay-title="Terminal" { spawn "kitty"; }
+    Mod+B hotkey-overlay-title="Web Browser" { spawn "firefox"; }
+    Mod+E hotkey-overlay-title="File Explorer" { spawn "nautilus" "--new-window"; }
+    Mod+Z hotkey-overlay-title="Text Editor" { spawn "zeditor"; }
+
+    // === DMS Functionalities ===
+    Mod+Space hotkey-overlay-title="Application Launcher" {
+        spawn "dms" "ipc" "call" "spotlight" "toggle";
+    }
+    Super+X hotkey-overlay-title="Power Menu" {
+        spawn "dms" "ipc" "call" "powermenu" "toggle";
+    }
+    Mod+L hotkey-overlay-title="Lock Screen" {
+        spawn "dms" "ipc" "call" "lock" "lock";
+    }
+    Mod+V hotkey-overlay-title="Clipboard Manager" {
+        spawn "dms" "ipc" "call" "clipboard" "toggle";
+    }
+    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" {
+        spawn "dms" "ipc" "call" "processlist" "focusOrToggle";
+    }
+
+    // === Audio Controls ===
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "increment" "1";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "decrement" "1";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "mute";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "micmute";
+    }
+		XF86AudioPause allow-when-locked=true {
+		    spawn "dms" "ipc" "call" "mpris" "playPause";
+		}
+		XF86AudioPlay allow-when-locked=true {
+		    spawn "dms" "ipc" "call" "mpris" "playPause";
+		}
+		XF86AudioPrev allow-when-locked=true {
+		    spawn "dms" "ipc" "call" "mpris" "previous";
+		}
+		XF86AudioNext allow-when-locked=true {
+		    spawn "dms" "ipc" "call" "mpris" "next";
+		}
+    Ctrl+XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "mpris" "decrement" "1";
+    }
+    Ctrl+XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "mpris" "increment" "1";
+    }
+
+    // === Brightness Controls ===
+    Mod+Shift+P hotkey-overlay-title="Power Off Monitors" { power-off-monitors; }
+    XF86MonBrightnessUp allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+    }
+
+    // === Screenshots ===
+    Print { screenshot; }
+    Shift+Print { screenshot-screen; }
+    Ctrl+Print { screenshot-window; }
+
+    XF86Launch1 { screenshot; }
+    Shift+XF86Launch1 { screenshot-screen; }
+    Ctrl+XF86Launch1 { screenshot-window; }
+
+    // === Window Management ===
+    Mod+Q repeat=false { close-window; }
+
+    Mod+F { maximize-column; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+Ctrl+F { maximize-window-to-edges; }
+
+    Mod+Tab { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+Tab { toggle-window-floating; }
+
+    Mod+W { toggle-column-tabbed-display; }
+
+    // === Window Focus / Movement ===
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+    Mod+Ctrl+Up    { move-window-up; }
+    Mod+Ctrl+Down  { move-window-down; }
+
+    // === Column Focus / Movement ===
+    Mod+C { center-column; }
+    Mod+Shift+C { center-visible-columns; }
+
+    Mod+WheelScrollUp        { focus-column-left; }
+    Mod+WheelScrollDown      { focus-column-right; }
+    Mod+Ctrl+WheelScrollUp   { move-column-left; }
+    Mod+Ctrl+WheelScrollDown { move-column-right; }
+
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    Mod+WheelScrollLeft  { consume-or-expel-window-left; }
+    Mod+WheelScrollRight { consume-or-expel-window-right; }
+    Mod+MouseMiddle { expel-window-from-column; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Period { expel-window-from-column; }
+
+    // === Workspace Focus / Movement ===
+    Mod+Shift+WheelScrollDown      { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp        { focus-workspace-up; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-to-workspace-up; }
+
+    Mod+Page_Down      { focus-workspace-down; }
+    Mod+Page_Up        { focus-workspace-up; }
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+
+    // === Sizing & Layout ===
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+Shift+R { reset-window-height; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Ctrl+Minus { set-column-width "-1"; }
+    Mod+Ctrl+Equal { set-column-width "+1"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Ctrl+Shift+Minus { set-window-height "-1"; }
+    Mod+Ctrl+Shift+Equal { set-window-height "+1"; }
+
+    Mod+MouseForward   { set-column-width "+10%"; }
+    Mod+MouseBack { set-column-width "-10%"; }
+    Mod+Shift+MouseForward   { set-column-width "+1"; }
+    Mod+Shift+MouseBack { set-column-width "-1"; }
+
+    // === Numbered Workspaces ===
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    // === Move to Numbered Workspaces ===
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
 }
 
 // Include dms files
