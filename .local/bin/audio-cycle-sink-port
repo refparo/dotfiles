@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Cycle the current default sink to its next available port.
+set -euo pipefail
+
+notify() { # <info|warn|error> <message>
+	dms ipc toast "$1" "$2"
+}
+
+sink=$(pactl get-default-sink)
+
+# Parse `pactl list sinks`: find the default sink's block, collect its
+# description, its available ports (name + description), and its active port.
+sink_desc=$sink
+ports=()
+port_descs=()
+active=
+while IFS=$'\t' read -r kind v1 v2; do
+	case "$kind" in
+	desc) sink_desc=$v1 ;;
+	port)
+		ports+=("$v1")
+		port_descs+=("$v2")
+		;;
+	active) active=$v1 ;;
+	esac
+done < <(pactl list sinks | awk -v sink="$sink" '
+	$1 == "Name:" && $2 == sink { found = 1; next }
+	found && !desc_done && $1 == "Description:" {
+		line = $0
+		sub(/^[ \t]*Description:[ \t]*/, "", line)
+		print "desc\t" line
+		desc_done = 1
+		next
+	}
+	found && $1 == "Ports:" { inports = 1; next }
+	found && inports && $1 == "Active" { print "active\t" $3; exit }
+	found && inports && $0 !~ /not available/ {
+		name = $1
+		sub(/:$/, "", name)
+		line = $0
+		sub(/^[ \t]*\S+:[ \t]*/, "", line)
+		sub(/[ \t]*\(type:.*$/, "", line)
+		print "port\t" name "\t" line
+	}
+')
+
+if ((${#ports[@]} == 0)); then
+	msg="No available ports on $sink_desc"
+	echo "audio-cycle-sink-port: $msg" >&2
+	notify error "$msg"
+	exit 1
+fi
+
+# Pick the port after the active one, wrapping around.
+next_idx=0
+for i in "${!ports[@]}"; do
+	if [[ ${ports[i]} == "$active" ]]; then
+		next_idx=$(((i + 1) % ${#ports[@]}))
+		break
+	fi
+done
+
+if ((${#ports[@]} == 1)); then
+	msg="$sink_desc: only one available port (${port_descs[0]})"
+	echo "audio-cycle-sink-port: $msg"
+	notify warn "$msg"
+	exit 0
+fi
+
+pactl set-sink-port "$sink" "${ports[next_idx]}"
+
+active_desc=
+for i in "${!ports[@]}"; do
+	if [[ ${ports[i]} == "$active" ]]; then
+		active_desc=${port_descs[i]}
+		break
+	fi
+done
+msg="Switched to: ${port_descs[next_idx]}"
+echo "$msg"
+notify info "$msg"

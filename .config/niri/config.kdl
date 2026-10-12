@@ -168,60 +168,61 @@ binds {
 
     // === DMS Functionalities ===
     Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle";
+        spawn "dms" "ipc" "call" "spotlight" "toggle"
     }
     Super+X hotkey-overlay-title="Power Menu" {
-        spawn "dms" "ipc" "call" "powermenu" "toggle";
+        spawn "dms" "ipc" "call" "powermenu" "toggle"
     }
     Mod+L hotkey-overlay-title="Lock Screen" {
-        spawn "dms" "ipc" "call" "lock" "lock";
+        spawn "dms" "ipc" "call" "lock" "lock"
     }
     Mod+V hotkey-overlay-title="Clipboard Manager" {
-        spawn "dms" "ipc" "call" "clipboard" "toggle";
+        spawn "dms" "ipc" "call" "clipboard" "toggle"
     }
     Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" {
-        spawn "dms" "ipc" "call" "processlist" "focusOrToggle";
+        spawn "dms" "ipc" "call" "processlist" "focusOrToggle"
     }
 
     // === Audio Controls ===
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "1";
+    XF86AudioRaiseVolume allow-when-locked=true { // Fn+F12
+        spawn "dms" "ipc" "call" "audio" "increment" "1"
     }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "1";
+    XF86AudioLowerVolume allow-when-locked=true { // Fn+F11
+        spawn "dms" "ipc" "call" "audio" "decrement" "1"
     }
-    XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
+    XF86AudioMute allow-when-locked=true { // Fn+F10
+        spawn "dms" "ipc" "call" "audio" "mute"
     }
-    XF86AudioMicMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "micmute";
-    }
-		XF86AudioPause allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "playPause";
+    XF86AudioNext allow-when-locked=true { // Fn+F9
+		    spawn "dms" "ipc" "call" "mpris" "next"
 		}
-		XF86AudioPlay allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "playPause";
+		XF86AudioPlay allow-when-locked=true { // Fn+F8
+		    spawn "dms" "ipc" "call" "mpris" "playPause"
 		}
-		XF86AudioPrev allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "previous";
+		XF86AudioPrev allow-when-locked=true { // Fn+F7
+		    spawn "dms" "ipc" "call" "mpris" "previous"
 		}
-		XF86AudioNext allow-when-locked=true {
-		    spawn "dms" "ipc" "call" "mpris" "next";
+		XF86AudioStop allow-when-locked=true { // Fn+F6
+		    spawn "dms" "ipc" "audio" "cycleoutput"
 		}
-    Ctrl+XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "mpris" "decrement" "1";
-    }
+		Shift+XF86AudioStop allow-when-locked=true { // Shift+Fn+F6
+		    spawn "audio-cycle-sink-port"
+		}
+
     Ctrl+XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "mpris" "increment" "1";
+        spawn "dms" "ipc" "call" "mpris" "increment" "1"
+    }
+    Ctrl+XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "mpris" "decrement" "1"
     }
 
     // === Brightness Controls ===
     Mod+Shift+P hotkey-overlay-title="Power Off Monitors" { power-off-monitors; }
     XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+       spawn "dms" "ipc" "call" "brightness" "increment" "5" ""
     }
     XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+       spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""
     }
 
     // === Screenshots ===

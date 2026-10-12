@@ -1,6 +1,8 @@
 {
   "agent": {
-    "sidebar_side": "right",
+    "threads_sidebar": {
+      "position": "right"
+    },
     "button": false,
     "dock": "right",
     "enabled": false
