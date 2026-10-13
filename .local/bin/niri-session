@@ -1,0 +1,56 @@
+#!/bin/sh
+# This script is modified from the official niri-session script in /usr/bin.
+
+# Detect if being run as a user service, which implies external session management,
+# exec compositor directly
+if [ -n "${MANAGERPID:-}" ] && [ "${SYSTEMD_EXEC_PID:-}" = "$$" ]; then
+    case "$(ps -p "$MANAGERPID" -o cmd=)" in
+    *systemd*--user*)
+        exec niri --session
+        ;;
+    esac
+fi
+
+# (modified) Do not get env vars from a shell profile,
+# because greetd already does this.
+
+# Make sure there's no already running session.
+if systemctl --user -q is-active niri.service; then
+  echo 'A niri session is already running.'
+  exit 1
+fi
+
+# Reset failed state of all user units.
+systemctl --user reset-failed
+
+# (modified) sets some env vars specifically meant for a graphical session.
+systemctl --user set-environment \
+  EDITOR="zeditor -w" \
+  LANG=zh_CN.UTF-8 \
+  LANGUAGE=zh_CN:zh:en_US:en
+
+# Import the login manager environment.
+# (modified) specify an env var list.
+systemctl --user import-environment \
+  `# see https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#Environment` \
+  XDG_SESSION_ID XDG_RUNTIME_DIR \
+  XDG_SESSION_TYPE XDG_SESSION_CLASS XDG_SESSION_DESKTOP \
+  XDG_SEAT XDG_VTNR XDG_AREA XDG_SESSION_EXTRA_DEVICE_ACCESS \
+  XDG_SESSION_INHIBIT XDG_SESSION_INHIBIT_WHY \
+  `# special var used by DMS` \
+  DMS_GREETER_AUTH_TIME
+
+# (modified) dbus-update-activation-environment is not needed for dbus-broker
+# based systems, see https://github.com/niri-wm/niri/issues/254#issuecomment-2339715153
+#dbus-update-activation-environment --all
+
+# Start niri and wait for it to terminate.
+systemctl --user --wait start niri.service
+
+# Force stop of graphical-session.target.
+systemctl --user start --job-mode=replace-irreversibly niri-shutdown.target
+
+# Unset environment that we've set.
+# (modified) unset everything because only vars specifically meant for graphical
+# session are set with import-environment.
+systemctl --user unset-environment

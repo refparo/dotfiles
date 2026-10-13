@@ -1,9 +1,36 @@
-# Always set environment variables
-[[ -v EDITOR ]] || export EDITOR=vim
-[[ -v DISPLAY ]] && export EDITOR=$HOME/.local/bin/zed
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.cabal/bin:$PATH
+# === Environment Variables ===
+# This section is executed by:
+# - greetd -> sh .profile
+# - systemd user-environment-generator -> import env into systemd
+# - tty/ssh -> login shell -> ~/.bash_profile
+# - non-login shell -> ~/.bashrc
+# Only put global (both bash and systemd) env here.
+# For graphical-only env, see ~/.local/bin/niri-session
 
-# If not running interactively, don't do anything related to shell environment
+set -a
+
+prepend_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="$1${PATH:+:$PATH}" ;;
+  esac
+}
+prepend_path $HOME/.cargo/bin
+prepend_path $HOME/.local/bin
+unset -f prepend_path
+
+QT_QPA_PLATFORMTHEME=qt6ct
+RUSTUP_DIST_SERVER=https://mirrors.cernet.edu.cn/rustup
+TERMINAL=kitty
+
+# conditional env
+[[ -v DISPLAY ]] && EDITOR="zeditor -w" || EDITOR=vim
+[[ $- == *i* && $TERM != linux ]] && { LANG=zh_CN.UTF-8; LANGUAGE=zh_CN:zh:en_US:en; }
+
+set +a
+
+# === Actual Bash Config ===
+# If not running interactively, don't apply Bash config
 [[ $- != *i* ]] && return
 
 source /usr/share/blesh/ble.sh --noattach
@@ -27,22 +54,7 @@ alias ls='ls -pv --color=auto --group-directories-first'
 alias la='ls -Apv --color=auto --group-directories-first'
 alias ll='ls -Ahlpv --color=auto --group-directories-first --time-style=long-iso'
 alias grep='grep --color=auto'
-
-function paru {
-  local PROXY_URL=http://localhost:1080
-  local -x https_proxy
-  if [ $# -eq 0 ]; then
-    command paru -Syu
-    https_proxy=$PROXY_URL command paru --aur -Syu
-  else
-    local param
-    for param in "$@"; do
-      case $param in
-        --aur | -a* | -[!-]*a*) https_proxy=$PROXY_URL; break ;;
-      esac
-    done
-    command paru "$@"
-  fi
-}
+alias paru='https_proxy=http://localhost:1080 paru'
+alias zed=zeditor
 
 [[ ! ${BLE_VERSION-} ]] || ble-attach
