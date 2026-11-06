@@ -74,7 +74,7 @@
       "language_servers": ["oxfmt", "..."]
     },
     "Python": {
-      "language_servers": ["!basedpyright", "!pylsp", "!pyright", "..."]
+      "language_servers": ["ty", "!basedpyright", "!pylsp", "!pyrefly", "!pyright", "..."]
     },
     "TOML": {
       "language_servers": ["oxfmt", "..."]

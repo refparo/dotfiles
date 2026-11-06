@@ -185,10 +185,10 @@ binds {
 
     // === Audio Controls ===
     XF86AudioRaiseVolume allow-when-locked=true { // Fn+F12
-        spawn "dms" "ipc" "call" "audio" "increment" "1"
+        spawn "dms" "ipc" "call" "audio" "increment" "5"
     }
     XF86AudioLowerVolume allow-when-locked=true { // Fn+F11
-        spawn "dms" "ipc" "call" "audio" "decrement" "1"
+        spawn "dms" "ipc" "call" "audio" "decrement" "5"
     }
     XF86AudioMute allow-when-locked=true { // Fn+F10
         spawn "dms" "ipc" "call" "audio" "mute"

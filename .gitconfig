@@ -12,8 +12,8 @@
 [rebase]
   autoStash = true
 [user]
-  name = refparo
-  email = ref.paro@outlook.com
+  name = paro
+  email = me@paro.one
 [http "https://github.com/"]
   proxy = http://localhost:1080
 [filter "lfs"]
